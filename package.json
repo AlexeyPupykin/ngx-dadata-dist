@@ -1,0 +1,44 @@
+{
+  "name": "@kolkov/ngx-dadata",
+  "version": "1.0.4",
+  "author": "Andrey Kolkov <a.kolkov@gmail.com>",
+  "repository": "https://github.com/kolkov/ngx-dadata",
+  "license": "MIT",
+  "private": false,
+  "description": "Angular 6+ and 13+ DaData suggestion (подсказки) implementation",
+  "peerDependencies": {
+    "@angular/common": ">=13",
+    "@angular/core": ">=13"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "keywords": [
+    "angular",
+    "angular 6+",
+    "dadata",
+    "suggestions",
+    "dadata-suggestions",
+    "подсказки"
+  ],
+  "module": "fesm2015/kolkov-ngx-dadata.mjs",
+  "es2020": "fesm2020/kolkov-ngx-dadata.mjs",
+  "esm2020": "esm2020/kolkov-ngx-dadata.mjs",
+  "fesm2020": "fesm2020/kolkov-ngx-dadata.mjs",
+  "fesm2015": "fesm2015/kolkov-ngx-dadata.mjs",
+  "typings": "kolkov-ngx-dadata.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./kolkov-ngx-dadata.d.ts",
+      "esm2020": "./esm2020/kolkov-ngx-dadata.mjs",
+      "es2020": "./fesm2020/kolkov-ngx-dadata.mjs",
+      "es2015": "./fesm2015/kolkov-ngx-dadata.mjs",
+      "node": "./fesm2015/kolkov-ngx-dadata.mjs",
+      "default": "./fesm2020/kolkov-ngx-dadata.mjs"
+    }
+  },
+  "sideEffects": false
+}

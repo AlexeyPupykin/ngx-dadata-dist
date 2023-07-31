@@ -1,0 +1,11 @@
+/*
+ * Public API Surface of ngx-dadata
+ */
+export * from './lib/ngx-dadata.service';
+export * from './lib/ngx-dadata.component';
+export * from './lib/ngx-dadata.module';
+export * from './lib/dadata-config';
+export * from './lib/models/data';
+export * from './lib/models/suggestion';
+export { DadataType } from './lib/ngx-dadata.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1kYWRhdGEvc3JjL3B1YmxpYy1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLDBCQUEwQixDQUFDO0FBQ3pDLGNBQWMsNEJBQTRCLENBQUM7QUFDM0MsY0FBYyx5QkFBeUIsQ0FBQztBQUN4QyxjQUFjLHFCQUFxQixDQUFDO0FBQ3BDLGNBQWMsbUJBQW1CLENBQUM7QUFDbEMsY0FBYyx5QkFBeUIsQ0FBQztBQUN4QyxPQUFPLEVBQUMsVUFBVSxFQUFDLE1BQU0sMEJBQTBCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxyXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2Ygbmd4LWRhZGF0YVxyXG4gKi9cclxuXHJcbmV4cG9ydCAqIGZyb20gJy4vbGliL25neC1kYWRhdGEuc2VydmljZSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbGliL25neC1kYWRhdGEuY29tcG9uZW50JztcclxuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LWRhZGF0YS5tb2R1bGUnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9kYWRhdGEtY29uZmlnJztcclxuZXhwb3J0ICogZnJvbSAnLi9saWIvbW9kZWxzL2RhdGEnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9tb2RlbHMvc3VnZ2VzdGlvbic7XHJcbmV4cG9ydCB7RGFkYXRhVHlwZX0gZnJvbSAnLi9saWIvbmd4LWRhZGF0YS5zZXJ2aWNlJztcclxuIl19
