@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, forwardRef, Component, Inject, Input, Output, ViewChild, HostListener, NgModule } from '@angular/core';
+import { Injectable, EventEmitter, forwardRef, Component, Input, Output, ViewChild, HostListener, NgModule } from '@angular/core';
 import * as i1 from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Subject, timer } from 'rxjs';
@@ -7,9 +7,7 @@ import { debounce } from 'rxjs/operators';
 import * as i2 from '@angular/forms';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import * as i3 from '@angular/common';
-import { DOCUMENT, CommonModule } from '@angular/common';
-import { unwrapHtmlForSink } from 'safevalues';
-import { createHtml } from 'safevalues/implementation/html_impl';
+import { CommonModule } from '@angular/common';
 
 var DadataType;
 (function (DadataType) {
@@ -38,13 +36,12 @@ class NgxDadataService {
             })
         };
         const body = Object.assign({}, { query: value }, { count: config === null || config === void 0 ? void 0 : config.limit }, { locations: config === null || config === void 0 ? void 0 : config.locations }, { location_boost: config === null || config === void 0 ? void 0 : config.locationsBoost }, { from_bound: (_a = config === null || config === void 0 ? void 0 : config.bounds) === null || _a === void 0 ? void 0 : _a.fromBound }, { to_bound: (_b = config === null || config === void 0 ? void 0 : config.bounds) === null || _b === void 0 ? void 0 : _b.toBound });
-        console.log(body);
         return this.http.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/' + type, body, httpOptions);
     }
 }
-NgxDadataService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataService, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
-NgxDadataService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataService, decorators: [{
+NgxDadataService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataService, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
+NgxDadataService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -84,11 +81,10 @@ function createDaDataValidator(value) {
  */
 let uniqueDadataIdCounter = 0;
 class NgxDadataComponent {
-    constructor(dataService, r, elRef, document) {
+    constructor(dataService, r, elRef) {
         this.dataService = dataService;
         this.r = r;
         this.elRef = elRef;
-        this.document = document;
         this.v = '';
         this.currentFocus = -1;
         this.opened = false;
@@ -194,23 +190,23 @@ class NgxDadataComponent {
         // this.selectedString.emit(this.selectedSuggestion.value);
     }
     setFocus(id) {
-        const activeEl = this.document.getElementById(id + 'item');
+        const activeEl = document.getElementById(id + 'item');
         this.r.addClass(activeEl, 'active');
     }
     removeFocus(id) {
         if (id !== -1) {
-            const activeEl = this.document.getElementById(id + 'item');
+            const activeEl = document.getElementById(id + 'item');
             this.r.removeClass(activeEl, 'active');
         }
     }
     writeValue(value) {
-        if (value !== undefined && value !== null) {
+        if (value !== undefined) {
             this.v = value;
         }
         else {
             this.v = '';
         }
-        this.r.setProperty(this.inputValue.nativeElement, 'innerHTML', unwrapHtmlForSink(createHtml(this.v)));
+        this.r.setProperty(this.inputValue.nativeElement, 'innerHTML', this.v);
     }
     /**
      * Set the function to be called
@@ -237,18 +233,19 @@ class NgxDadataComponent {
      * @param isDisabled Disabled state flag
      */
     setDisabledState(isDisabled) {
+        alert('disabled!');
         this.disabled = isDisabled;
     }
 }
-NgxDadataComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataComponent, deps: [{ token: NgxDadataService }, { token: i0.Renderer2 }, { token: i0.ElementRef }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Component });
-NgxDadataComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.3", type: NgxDadataComponent, selector: "ngx-dadata", inputs: { config: "config", apiKey: "apiKey", disabled: "disabled", type: "type", limit: "limit", placeholder: "placeholder", locations: "locations" }, outputs: { selectedSuggestion: "selectedSuggestion", selected: "selected" }, host: { listeners: { "document:click": "onOutsideClick($event)" } }, providers: [
+NgxDadataComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataComponent, deps: [{ token: NgxDadataService }, { token: i0.Renderer2 }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+NgxDadataComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.1", type: NgxDadataComponent, selector: "ngx-dadata", inputs: { config: "config", apiKey: "apiKey", disabled: "disabled", type: "type", limit: "limit", placeholder: "placeholder", locations: "locations" }, outputs: { selectedSuggestion: "selectedSuggestion", selected: "selected" }, host: { listeners: { "document:click": "onOutsideClick($event)" } }, providers: [
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => NgxDadataComponent),
             multi: true
         }, /*NGX_DADATA_VALIDATOR*/
-    ], viewQueries: [{ propertyName: "inputValue", first: true, predicate: ["inputValue"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0, template: "<div class=\"autocomplete\">\r\n  <input [disabled]=\"disabled  ? true : null\" type=\"text\" class=\"search\" #inputValue (input)=\"getData(inputValue.value)\"\r\n         [placeholder]=\"placeholder\" (keyup.ArrowDown)=\"onArrowDown()\" (keyup.ArrowUp)=\"onArrowUp()\"\r\n         (keyup.Enter)=\"onEnter($event)\" spellcheck=\"false\" [(ngModel)]=\"value\" autocomplete=\"off\" />\r\n  <div *ngIf=\"data.length\">\r\n    <div class=\"autocomplete-items\">\r\n      <div class=\"autocomplele-item\" *ngFor=\"let item of data; let i = index\" (click)=\"onClick($event, item)\" [id]=\"i+'item'\">\r\n        {{item.value}}\r\n        <ng-template [ngIf]=\"type==='party'\">\r\n          <br/>\r\n          <span>{{item.data?.inn}} {{config.partyAddress === 'full' ? item.data?.address?.value : item.data?.address?.data?.city}}</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n", styles: [".autocomplete{position:relative}input{border:0 solid transparent;background-color:#f1f1f1;padding:5px}input[type=text]{background-color:#f1f1f1;width:100%}input[type=submit]{background-color:#1e90ff;color:#fff}.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-bottom:none;border-top:none;z-index:99;top:100%;left:0;right:0}.autocomplete-items .autocomplele-item{padding:5px 10px;cursor:pointer;background-color:#fff;border-bottom:1px solid #d4d4d4}.autocomplete-items .autocomplele-item:hover{background-color:#e9e9e9}.autocomplete-items .autocomplele-item.active{background-color:#1e90ff!important;color:#fff}.autocomplete-items .autocomplele-item span{color:#555;font-size:80%}\n"], directives: [{ type: i2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { type: i2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i2.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataComponent, decorators: [{
+    ], viewQueries: [{ propertyName: "inputValue", first: true, predicate: ["inputValue"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0, template: "<div class=\"autocomplete\">\n  <input [disabled]=\"disabled  ? true : null\" type=\"text\" class=\"search\" #inputValue (input)=\"getData(inputValue.value)\"\n         [placeholder]=\"placeholder\" (keyup.ArrowDown)=\"onArrowDown()\" (keyup.ArrowUp)=\"onArrowUp()\"\n         (keyup.Enter)=\"onEnter($event)\" spellcheck=\"false\" [(ngModel)]=\"value\" autocomplete=\"off\" />\n  <div *ngIf=\"data.length\">\n    <div class=\"autocomplete-items\">\n      <div class=\"autocomplele-item\" *ngFor=\"let item of data; let i = index\" (click)=\"onClick($event, item)\" [id]=\"i+'item'\">\n        {{item.value}}\n        <ng-template [ngIf]=\"type==='party'\">\n          <br/>\n          <span>{{item.data?.inn}} {{config.partyAddress === 'full' ? item.data?.address?.value : item.data?.address?.data?.city}}</span>\n        </ng-template>\n      </div>\n    </div>\n  </div>\n</div>\n", styles: [".autocomplete{position:relative}input{border:0 solid transparent;background-color:#f1f1f1;padding:5px}input[type=text]{background-color:#f1f1f1;width:100%}input[type=submit]{background-color:#1e90ff;color:#fff}.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-bottom:none;border-top:none;z-index:99;top:100%;left:0;right:0}.autocomplete-items .autocomplele-item{padding:5px 10px;cursor:pointer;background-color:#fff;border-bottom:1px solid #d4d4d4}.autocomplete-items .autocomplele-item:hover{background-color:#e9e9e9}.autocomplete-items .autocomplele-item.active{background-color:#1e90ff!important;color:#fff}.autocomplete-items .autocomplele-item span{color:#555;font-size:80%}\n"], directives: [{ type: i2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { type: i2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i2.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataComponent, decorators: [{
             type: Component,
             args: [{ selector: 'ngx-dadata', providers: [
                         {
@@ -256,13 +253,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImpor
                             useExisting: forwardRef(() => NgxDadataComponent),
                             multi: true
                         }, /*NGX_DADATA_VALIDATOR*/
-                    ], template: "<div class=\"autocomplete\">\r\n  <input [disabled]=\"disabled  ? true : null\" type=\"text\" class=\"search\" #inputValue (input)=\"getData(inputValue.value)\"\r\n         [placeholder]=\"placeholder\" (keyup.ArrowDown)=\"onArrowDown()\" (keyup.ArrowUp)=\"onArrowUp()\"\r\n         (keyup.Enter)=\"onEnter($event)\" spellcheck=\"false\" [(ngModel)]=\"value\" autocomplete=\"off\" />\r\n  <div *ngIf=\"data.length\">\r\n    <div class=\"autocomplete-items\">\r\n      <div class=\"autocomplele-item\" *ngFor=\"let item of data; let i = index\" (click)=\"onClick($event, item)\" [id]=\"i+'item'\">\r\n        {{item.value}}\r\n        <ng-template [ngIf]=\"type==='party'\">\r\n          <br/>\r\n          <span>{{item.data?.inn}} {{config.partyAddress === 'full' ? item.data?.address?.value : item.data?.address?.data?.city}}</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n", styles: [".autocomplete{position:relative}input{border:0 solid transparent;background-color:#f1f1f1;padding:5px}input[type=text]{background-color:#f1f1f1;width:100%}input[type=submit]{background-color:#1e90ff;color:#fff}.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-bottom:none;border-top:none;z-index:99;top:100%;left:0;right:0}.autocomplete-items .autocomplele-item{padding:5px 10px;cursor:pointer;background-color:#fff;border-bottom:1px solid #d4d4d4}.autocomplete-items .autocomplele-item:hover{background-color:#e9e9e9}.autocomplete-items .autocomplele-item.active{background-color:#1e90ff!important;color:#fff}.autocomplete-items .autocomplele-item span{color:#555;font-size:80%}\n"] }]
-        }], ctorParameters: function () {
-        return [{ type: NgxDadataService }, { type: i0.Renderer2 }, { type: i0.ElementRef }, { type: Document, decorators: [{
-                        type: Inject,
-                        args: [DOCUMENT]
-                    }] }];
-    }, propDecorators: { config: [{
+                    ], template: "<div class=\"autocomplete\">\n  <input [disabled]=\"disabled  ? true : null\" type=\"text\" class=\"search\" #inputValue (input)=\"getData(inputValue.value)\"\n         [placeholder]=\"placeholder\" (keyup.ArrowDown)=\"onArrowDown()\" (keyup.ArrowUp)=\"onArrowUp()\"\n         (keyup.Enter)=\"onEnter($event)\" spellcheck=\"false\" [(ngModel)]=\"value\" autocomplete=\"off\" />\n  <div *ngIf=\"data.length\">\n    <div class=\"autocomplete-items\">\n      <div class=\"autocomplele-item\" *ngFor=\"let item of data; let i = index\" (click)=\"onClick($event, item)\" [id]=\"i+'item'\">\n        {{item.value}}\n        <ng-template [ngIf]=\"type==='party'\">\n          <br/>\n          <span>{{item.data?.inn}} {{config.partyAddress === 'full' ? item.data?.address?.value : item.data?.address?.data?.city}}</span>\n        </ng-template>\n      </div>\n    </div>\n  </div>\n</div>\n", styles: [".autocomplete{position:relative}input{border:0 solid transparent;background-color:#f1f1f1;padding:5px}input[type=text]{background-color:#f1f1f1;width:100%}input[type=submit]{background-color:#1e90ff;color:#fff}.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-bottom:none;border-top:none;z-index:99;top:100%;left:0;right:0}.autocomplete-items .autocomplele-item{padding:5px 10px;cursor:pointer;background-color:#fff;border-bottom:1px solid #d4d4d4}.autocomplete-items .autocomplele-item:hover{background-color:#e9e9e9}.autocomplete-items .autocomplele-item.active{background-color:#1e90ff!important;color:#fff}.autocomplete-items .autocomplele-item span{color:#555;font-size:80%}\n"] }]
+        }], ctorParameters: function () { return [{ type: NgxDadataService }, { type: i0.Renderer2 }, { type: i0.ElementRef }]; }, propDecorators: { config: [{
                 type: Input
             }], apiKey: [{
                 type: Input
@@ -290,14 +282,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImpor
 
 class NgxDadataModule {
 }
-NgxDadataModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-NgxDadataModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataModule, declarations: [NgxDadataComponent], imports: [CommonModule,
+NgxDadataModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+NgxDadataModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataModule, declarations: [NgxDadataComponent], imports: [CommonModule,
         FormsModule], exports: [NgxDadataComponent] });
-NgxDadataModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataModule, imports: [[
+NgxDadataModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataModule, imports: [[
             CommonModule,
             FormsModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: NgxDadataModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: NgxDadataModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

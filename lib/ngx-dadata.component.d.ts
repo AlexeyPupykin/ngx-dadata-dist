@@ -14,7 +14,6 @@ export declare class NgxDadataComponent implements OnInit, ControlValueAccessor,
     private dataService;
     private r;
     private elRef;
-    private document;
     private v;
     currentFocus: number;
     opened: boolean;
@@ -35,7 +34,7 @@ export declare class NgxDadataComponent implements OnInit, ControlValueAccessor,
     onTouched: () => void;
     propagateChange: any;
     validateFn: any;
-    constructor(dataService: NgxDadataService, r: Renderer2, elRef: ElementRef, document: Document);
+    constructor(dataService: NgxDadataService, r: Renderer2, elRef: ElementRef);
     get value(): any;
     set value(v: any);
     ngOnInit(): void;
