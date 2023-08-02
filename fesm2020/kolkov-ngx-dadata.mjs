@@ -34,7 +34,7 @@ class NgxDadataService {
                 Authorization: 'Token ' + this.apiKey,
             })
         };
-        const body = Object.assign({}, { query: value }, { count: config?.limit }, { locations: config?.locations }, { location_boost: config?.locationsBoost }, { from_bound: config?.bounds?.fromBound }, { to_bound: config?.bounds?.toBound });
+        const body = Object.assign({}, { query: value }, { count: config?.limit }, { locations: config?.locations }, { location_boost: config?.locationsBoost }, { from_bound: config?.bounds?.fromBound }, { to_bound: config?.bounds?.toBound }, { to_bound: config?.bounds?.toBound }, { restrict_value: config.restrictValue !== undefined ? config.restrictValue : false });
         return this.http.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/' + type, body, httpOptions);
     }
 }

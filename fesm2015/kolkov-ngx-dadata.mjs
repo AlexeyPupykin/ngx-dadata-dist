@@ -27,7 +27,7 @@ class NgxDadataService {
     }
     // eslint-disable-next-line max-len
     getData(value, type = DadataType.address, config) {
-        var _a, _b;
+        var _a, _b, _c;
         const httpOptions = {
             headers: new HttpHeaders({
                 Accept: 'application/json',
@@ -35,7 +35,7 @@ class NgxDadataService {
                 Authorization: 'Token ' + this.apiKey,
             })
         };
-        const body = Object.assign({}, { query: value }, { count: config === null || config === void 0 ? void 0 : config.limit }, { locations: config === null || config === void 0 ? void 0 : config.locations }, { location_boost: config === null || config === void 0 ? void 0 : config.locationsBoost }, { from_bound: (_a = config === null || config === void 0 ? void 0 : config.bounds) === null || _a === void 0 ? void 0 : _a.fromBound }, { to_bound: (_b = config === null || config === void 0 ? void 0 : config.bounds) === null || _b === void 0 ? void 0 : _b.toBound });
+        const body = Object.assign({}, { query: value }, { count: config === null || config === void 0 ? void 0 : config.limit }, { locations: config === null || config === void 0 ? void 0 : config.locations }, { location_boost: config === null || config === void 0 ? void 0 : config.locationsBoost }, { from_bound: (_a = config === null || config === void 0 ? void 0 : config.bounds) === null || _a === void 0 ? void 0 : _a.fromBound }, { to_bound: (_b = config === null || config === void 0 ? void 0 : config.bounds) === null || _b === void 0 ? void 0 : _b.toBound }, { to_bound: (_c = config === null || config === void 0 ? void 0 : config.bounds) === null || _c === void 0 ? void 0 : _c.toBound }, { restrict_value: config.restrictValue !== undefined ? config.restrictValue : false });
         return this.http.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/' + type, body, httpOptions);
     }
 }
