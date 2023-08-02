@@ -34,7 +34,7 @@ class NgxDadataService {
                 Authorization: 'Token ' + this.apiKey,
             })
         };
-        const body = Object.assign({}, { query: value }, { count: config?.limit }, { locations: config?.locations }, { location_boost: config?.locationsBoost }, { from_bound: config?.bounds?.fromBound }, { to_bound: config?.bounds?.toBound }, { to_bound: config?.bounds?.toBound }, { restrict_value: config.restrictValue !== undefined ? config.restrictValue : false });
+        const body = Object.assign({}, { query: value }, { count: config?.limit }, { locations: config?.locations }, { location_boost: config?.locationsBoost }, { from_bound: config?.bounds?.fromBound }, { to_bound: config?.bounds?.toBound }, { to_bound: config?.bounds?.toBound }, { restrict_value: config?.restrictValue });
         return this.http.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/' + type, body, httpOptions);
     }
 }
@@ -48,14 +48,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
         }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
 
 const DadataConfigDefault = {
-    apiKey: '',
+    apiKey: "",
     type: DadataType.address,
     delay: 500,
     limit: 10,
-    width: 'auto',
-    minWidth: '0',
-    partyAddress: 'city',
+    width: "auto",
+    minWidth: "0",
+    partyAddress: "city",
     locations: null,
+    restrictValue: false,
 };
 
 /*const NGX_DADATA_VALIDATOR = {

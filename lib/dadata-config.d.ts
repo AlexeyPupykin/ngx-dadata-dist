@@ -1,4 +1,4 @@
-import { DadataType } from './ngx-dadata.service';
+import { DadataType } from "./ngx-dadata.service";
 export interface Location {
     country?: string;
     country_iso_code?: string;
@@ -20,7 +20,7 @@ export interface Location {
     street_fias_id?: string;
 }
 export interface Bound {
-    value: 'country' | 'region' | 'city' | 'street' | 'settlement' | 'area' | 'house';
+    value: "country" | "region" | "city" | "street" | "settlement" | "area" | "house";
 }
 export interface Bounds {
     fromBound?: Bound;
@@ -31,9 +31,9 @@ export interface DadataConfig {
     type?: DadataType;
     delay?: number;
     limit?: number;
-    width?: 'auto' | string;
-    minWidth?: '0' | string;
-    partyAddress?: 'city' | 'full';
+    width?: "auto" | string;
+    minWidth?: "0" | string;
+    partyAddress?: "city" | "full";
     locations?: Location[];
     locationsBoost?: Location[];
     bounds?: Bounds;

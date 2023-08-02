@@ -35,7 +35,7 @@ class NgxDadataService {
                 Authorization: 'Token ' + this.apiKey,
             })
         };
-        const body = Object.assign({}, { query: value }, { count: config === null || config === void 0 ? void 0 : config.limit }, { locations: config === null || config === void 0 ? void 0 : config.locations }, { location_boost: config === null || config === void 0 ? void 0 : config.locationsBoost }, { from_bound: (_a = config === null || config === void 0 ? void 0 : config.bounds) === null || _a === void 0 ? void 0 : _a.fromBound }, { to_bound: (_b = config === null || config === void 0 ? void 0 : config.bounds) === null || _b === void 0 ? void 0 : _b.toBound }, { to_bound: (_c = config === null || config === void 0 ? void 0 : config.bounds) === null || _c === void 0 ? void 0 : _c.toBound }, { restrict_value: config.restrictValue !== undefined ? config.restrictValue : false });
+        const body = Object.assign({}, { query: value }, { count: config === null || config === void 0 ? void 0 : config.limit }, { locations: config === null || config === void 0 ? void 0 : config.locations }, { location_boost: config === null || config === void 0 ? void 0 : config.locationsBoost }, { from_bound: (_a = config === null || config === void 0 ? void 0 : config.bounds) === null || _a === void 0 ? void 0 : _a.fromBound }, { to_bound: (_b = config === null || config === void 0 ? void 0 : config.bounds) === null || _b === void 0 ? void 0 : _b.toBound }, { to_bound: (_c = config === null || config === void 0 ? void 0 : config.bounds) === null || _c === void 0 ? void 0 : _c.toBound }, { restrict_value: config === null || config === void 0 ? void 0 : config.restrictValue });
         return this.http.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/' + type, body, httpOptions);
     }
 }
@@ -49,14 +49,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
         }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
 
 const DadataConfigDefault = {
-    apiKey: '',
+    apiKey: "",
     type: DadataType.address,
     delay: 500,
     limit: 10,
-    width: 'auto',
-    minWidth: '0',
-    partyAddress: 'city',
+    width: "auto",
+    minWidth: "0",
+    partyAddress: "city",
     locations: null,
+    restrictValue: false,
 };
 
 /*const NGX_DADATA_VALIDATOR = {
